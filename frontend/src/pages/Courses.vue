@@ -13,7 +13,7 @@
       <div class="container">
 
         <div class="reveal" style="background:linear-gradient(135deg,rgba(59,130,246,0.1),rgba(6,182,212,0.05)); border:1px solid rgba(59,130,246,0.2); border-radius:12px; padding:32px 36px; display:flex; align-items:center; gap:24px; margin-bottom:64px; flex-wrap:wrap;">
-          <div style="font-size:3rem;">🗺️</div>
+          <div style="width:48px;height:48px;color:var(--amber);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
           <div>
             <div style="font-family:'Orbitron',sans-serif; font-size:1rem; font-weight:700; margin-bottom:6px; color:var(--accent-cyan);">Recommended Learning Path</div>
             <p style="color:var(--text-dim); font-size:0.9rem;">
@@ -53,13 +53,13 @@
                 <h3 class="course-title">{{ playlist.title }}</h3>
                 <span class="course-level" :style="getLevelStyle(playlist.level)">{{ playlist.level }}</span>
               </div>
-              <p class="course-instructor">👨‍🏫 Instructor: <strong>{{ playlist.instructor }}</strong></p>
+              <p class="course-instructor"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:13px;height:13px;display:inline;vertical-align:middle;margin-right:4px;"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> Instructor: <strong>{{ playlist.instructor }}</strong></p>
               <p class="course-desc">{{ playlist.description }}</p>
               <div class="course-tags">
                 <span v-for="tag in playlist.tags" :key="tag" class="tech-tag">{{ tag }}</span>
               </div>
               <div class="course-meta">
-                <span class="course-videos">📹 {{ playlist.videoCount > 0 ? playlist.videoCount + ' videos' : 'View Playlist' }}</span>
+                <span class="course-videos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:13px;height:13px;display:inline;vertical-align:middle;margin-right:3px;"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg> {{ playlist.videoCount > 0 ? playlist.videoCount + ' videos' : 'View Playlist' }}</span>
                 <span class="course-platform">YouTube</span>
               </div>
               <a :href="convertToPlaylistUrl(playlist.url)" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="margin-top:16px; width:100%; text-align:center; display:block;">
@@ -80,7 +80,7 @@
         <div class="foundation-courses-grid">
 
           <div class="course-card reveal">
-            <div class="course-icon">🤖</div>
+            <div class="course-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M12 11V7M8 7h8M7 15h.01M17 15h.01"/><circle cx="12" cy="4" r="2"/></svg></div>
             <div class="course-body">
               <div class="course-header">
                 <h3 class="course-title">Introduction to Robotics</h3>
@@ -102,7 +102,7 @@
           </div>
 
           <div class="course-card reveal">
-            <div class="course-icon">⚡</div>
+            <div class="course-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M18 9h3M3 15h3M18 15h3"/></svg></div>
             <div class="course-body">
               <div class="course-header">
                 <h3 class="course-title">Embedded Systems Basics</h3>
@@ -124,7 +124,7 @@
           </div>
 
           <div class="course-card reveal">
-            <div class="course-icon">🐍</div>
+            <div class="course-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
             <div class="course-body">
               <div class="course-header">
                 <h3 class="course-title">Python for Robotics</h3>

@@ -31,11 +31,11 @@
             <div class="sc-stat"><div class="sc-num">2<sup>+</sup></div><div class="sc-lbl">Competitions</div></div>
           </div>
           <div class="sc-chips">
-            <div class="chip">⚡ Embedded</div>
-            <div class="chip">👁 Vision</div>
-            <div class="chip">🧠 AI / ML</div>
-            <div class="chip">⚙ Mechanical</div>
-            <div class="chip">📡 IoT</div>
+            <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M18 9h3M3 15h3M18 15h3"/></svg> Embedded</div>
+            <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><ellipse cx="12" cy="12" rx="10" ry="6"/><circle cx="12" cy="12" r="3"/></svg> Vision</div>
+            <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg> AI / ML</div>
+            <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg> Mechanical</div>
+            <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13" height="13"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg> IoT</div>
           </div>
           <div class="sc-terminal">
             <span class="prompt">yantra@iitm-bs:~$ </span>robot.init()<br>
@@ -86,12 +86,42 @@
           </div>
         </div>
         <div class="domains reveal">
-          <div class="dom"><div class="dom-icon">⚡</div><div><div class="dom-name">Embedded</div><div class="dom-desc">MCUs, RTOS, PCB</div></div></div>
-          <div class="dom"><div class="dom-icon">👁</div><div><div class="dom-name">Vision</div><div class="dom-desc">YOLO, OpenCV</div></div></div>
-          <div class="dom"><div class="dom-icon">🧠</div><div><div class="dom-name">AI / ML</div><div class="dom-desc">RL, planning</div></div></div>
-          <div class="dom"><div class="dom-icon">⚙</div><div><div class="dom-name">Mechanical</div><div class="dom-desc">CAD, 3D print</div></div></div>
-          <div class="dom"><div class="dom-icon">📡</div><div><div class="dom-name">IoT</div><div class="dom-desc">MQTT, BLE</div></div></div>
-          <div class="dom"><div class="dom-icon">🔬</div><div><div class="dom-name">Research</div><div class="dom-desc">Papers, R&D</div></div></div>
+          <div class="dom">
+            <div class="dom-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3"/></svg>
+            </div>
+            <div><div class="dom-name">Embedded</div><div class="dom-desc">MCUs, RTOS, PCB</div></div>
+          </div>
+          <div class="dom">
+            <div class="dom-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="12" cy="12" rx="10" ry="6"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <div><div class="dom-name">Vision</div><div class="dom-desc">YOLO, OpenCV</div></div>
+          </div>
+          <div class="dom">
+            <div class="dom-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg>
+            </div>
+            <div><div class="dom-name">AI / ML</div><div class="dom-desc">RL, planning</div></div>
+          </div>
+          <div class="dom">
+            <div class="dom-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12"/></svg>
+            </div>
+            <div><div class="dom-name">Mechanical</div><div class="dom-desc">CAD, 3D print</div></div>
+          </div>
+          <div class="dom">
+            <div class="dom-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>
+            </div>
+            <div><div class="dom-name">IoT</div><div class="dom-desc">MQTT, BLE</div></div>
+          </div>
+          <div class="dom">
+            <div class="dom-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+            </div>
+            <div><div class="dom-name">Research</div><div class="dom-desc">Papers, R&D</div></div>
+          </div>
         </div>
       </div>
     </div>

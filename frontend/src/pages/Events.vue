@@ -27,7 +27,7 @@
 
           <div class="card reveal" style="opacity:0.7;">
             <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
-              <div style="font-size:1.6rem;">🔧</div>
+              <div style="width:32px;height:32px;color:var(--amber);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
               <div>
                 <div style="font-family:'Orbitron',sans-serif; font-size:0.8rem; font-weight:700;">Live Talk</div>
                 <div style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; color:var(--text-muted);">Deputy Chief Of Design @ The ePlane Co.</div>
@@ -38,7 +38,7 @@
 
           <div class="card reveal" style="opacity:0.7;">
             <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
-              <div style="font-size:1.6rem;">⚡</div>
+              <div style="width:32px;height:32px;color:var(--amber);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
               <div>
                 <div style="font-family:'Orbitron',sans-serif; font-size:0.8rem; font-weight:700;">Winter Robotics Hackathon</div>
                 <div style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; color:var(--text-muted);">Dec 2024 · 12 Teams</div>
@@ -49,7 +49,7 @@
 
           <div class="card reveal" style="opacity:0.7;">
             <div style="display:flex; gap:12px; align-items:center; margin-bottom:12px;">
-              <div style="font-size:1.6rem;">🎤</div>
+              <div style="width:32px;height:32px;color:var(--amber);flex-shrink:0;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2M12 19v4M8 23h8"/></svg></div>
               <div>
                 <div style="font-family:'Orbitron',sans-serif; font-size:0.8rem; font-weight:700;">ROS2 Guest Lecture</div>
                 <div style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; color:var(--text-muted);">Nov 2024 · 80+ Attendees</div>

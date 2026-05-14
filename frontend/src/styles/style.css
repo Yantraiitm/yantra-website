@@ -7,41 +7,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap');
 
 :root {
-  --bg-primary:    #0E0E0E;
-  --bg-secondary:  #161616;
-  --bg-card:       #1C1C1C;
-  --amber:         #F59E0B;
-  --amber-dim:     #92610A;
-  --rust:          #EA580C;
-  --slate:         #6B7280;
-  --muted:         #3A3A3A;
-  --panel:         #161616;
-  --accent-blue:   #F59E0B;
-  --accent-cyan:   #EA580C;
-  --accent-green:  #4ADE80;
-  --accent-purple: #F59E0B;
-  --text-primary:  #F5F0E8;
-  --text-muted:    #6B7280;
-  --text-dim:      #A89880;
-  --border:        rgba(245,158,11,0.12);
-  --border-glow:   rgba(245,158,11,0.42);
-  --glow-blue:     0 0 18px rgba(245,158,11,0.32);
-  --glow-cyan:     0 0 18px rgba(234,88,12,0.32);
-  --glow-green:    0 0 18px rgba(74,222,128,0.32);
-  --transition:    0.28s cubic-bezier(0.4,0,0.2,1);
-  /* Aliases used by inline styles in pages */
-  --bg:            #0E0E0E;
-  --card:          #1C1C1C;
-  --text:          #F5F0E8;
-  --border-hi:     rgba(245,158,11,0.42);
-  --green:         #4ADE80;
-  --t:             0.28s cubic-bezier(0.4,0,0.2,1);
-  --border-color:  rgba(245,158,11,0.12);
-  --accent-primary:   #F59E0B;
-  --accent-secondary: #EA580C;
-  --accent-highlight: #4ADE80;
-  --bg-alt:        #161616;
-  --dark-bg:       #0E0E0E;
+  /* Backgrounds */
+  --bg-primary:   #0E0E0E;
+  --bg-secondary: #161616;
+  --bg-card:      #1C1C1C;
+
+  /* Brand colors */
+  --amber:        #F59E0B;
+  --amber-dim:    #92610A;
+  --rust:         #EA580C;
+  --green:        #4ADE80;
+
+  /* Text */
+  --text-primary: #F5F0E8;
+  --text-muted:   #6B7280;
+  --text-dim:     #A89880;
+  --slate:        #6B7280;
+  --muted:        #3A3A3A;
+
+  /* Borders & glows */
+  --border:       rgba(245,158,11,0.12);
+  --border-glow:  rgba(245,158,11,0.42);
+  --glow-amber:   0 0 18px rgba(245,158,11,0.32);
+  --glow-rust:    0 0 18px rgba(234,88,12,0.32);
+  --glow-green:   0 0 18px rgba(74,222,128,0.32);
+
+  --transition:   0.28s cubic-bezier(0.4,0,0.2,1);
+
+  /* Shorthand aliases (used by inline styles in pages) */
+  --bg:           var(--bg-primary);
+  --card:         var(--bg-card);
+  --text:         var(--text-primary);
+  --border-hi:    var(--border-glow);
+  --border-color: var(--border);
+  --t:            var(--transition);
+  --bg-alt:       var(--bg-secondary);
+  --dark-bg:      var(--bg-primary);
+  --panel:        var(--bg-secondary);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -400,7 +402,8 @@ footer {
   transition:border-color var(--t),background var(--t);
 }
 .dom:hover { border-color:var(--border-glow); background:rgba(245,158,11,0.03); }
-.dom-icon { font-size:1.4rem; flex-shrink:0; }
+.dom-icon { width:32px; height:32px; flex-shrink:0; color:var(--amber); display:flex; align-items:center; justify-content:center; }
+.dom-icon svg { width:20px; height:20px; }
 .dom-name { font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--text-primary); font-weight:500; letter-spacing:0.06em; margin-bottom:2px; }
 .dom-desc { font-size:0.74rem; color:var(--slate); font-weight:300; }
 
@@ -532,7 +535,8 @@ footer {
   transition:var(--transition);
 }
 .domain-card:hover { border-color:var(--border-glow); transform:translateY(-4px); box-shadow:0 10px 32px rgba(0,0,0,0.5); }
-.domain-icon { font-size:1.8rem; margin-bottom:12px; }
+.domain-icon { width:40px; height:40px; margin-bottom:12px; color:var(--amber); }
+.domain-icon svg { width:100%; height:100%; }
 .domain-title { font-family:'DM Mono',monospace; font-size:0.68rem; font-weight:500; margin-bottom:7px; color:var(--amber); letter-spacing:0.1em; text-transform:uppercase; }
 .domain-desc { font-size:0.83rem; color:var(--text-dim); line-height:1.7; font-weight:300; }
 
@@ -601,7 +605,8 @@ footer {
   overflow:hidden; transition:all 0.3s ease; display:flex; flex-direction:column;
 }
 .course-card:hover { border-color:var(--border-glow); transform:translateY(-5px); box-shadow:0 16px 40px rgba(0,0,0,0.4); }
-.course-icon { font-size:3rem; padding:30px; text-align:center; background:linear-gradient(135deg,rgba(245,158,11,0.06),rgba(234,88,12,0.03)); border-bottom:1px solid var(--border); transition:transform 0.3s ease; }
+.course-icon { padding:30px; text-align:center; background:linear-gradient(135deg,rgba(245,158,11,0.06),rgba(234,88,12,0.03)); border-bottom:1px solid var(--border); transition:transform 0.3s ease; display:flex; align-items:center; justify-content:center; color:var(--amber); }
+.course-icon svg { width:48px; height:48px; }
 .course-card:hover .course-icon { transform:scale(1.08); }
 .course-thumbnail { position:relative; height:190px; overflow:hidden; background:var(--bg-primary); }
 .course-thumbnail img { width:100%; height:100%; object-fit:cover; transition:transform 0.4s ease; }
@@ -708,7 +713,8 @@ footer {
 .contact-info-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; margin-bottom:44px; }
 .contact-info-item { display:flex; gap:14px; align-items:flex-start; background:var(--bg-card); border:1px solid var(--border); border-radius:9px; padding:18px; transition:var(--transition); }
 .contact-info-item:hover { border-color:var(--border-glow); }
-.contact-icon { width:38px; height:38px; background:rgba(245,158,11,0.1); border-radius:7px; display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; border:1px solid rgba(245,158,11,0.18); }
+.contact-icon { width:38px; height:38px; background:rgba(245,158,11,0.1); border-radius:7px; display:flex; align-items:center; justify-content:center; flex-shrink:0; border:1px solid rgba(245,158,11,0.18); color:var(--amber); }
+.contact-icon svg { width:18px; height:18px; }
 .contact-info-label { font-family:'DM Mono',monospace; font-size:0.6rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:3px; }
 .contact-info-value { font-size:0.86rem; color:var(--text-primary); }
 .contact-info-value a:hover { color:var(--amber); }

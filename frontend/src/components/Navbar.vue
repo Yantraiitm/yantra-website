@@ -22,13 +22,15 @@
         <li><RouterLink to="/contact" @click="closeMobileMenu">Contact</RouterLink></li>
       </ul>
 
-      <button class="hamburger" @click="toggleMobileMenu" aria-label="Toggle navigation">
+      <button class="hamburger" :class="{ active: mobileMenuOpen }" @click="toggleMobileMenu" aria-label="Toggle navigation">
         <span></span>
         <span></span>
         <span></span>
       </button>
     </div>
   </nav>
+  <!-- backdrop -->
+  <div v-if="mobileMenuOpen" class="nav-backdrop" @click="closeMobileMenu"></div>
 </template>
 
 <script setup>
@@ -65,7 +67,7 @@ onUnmounted(() => {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 200;
   padding: 18px 0;
   transition: background var(--transition), padding var(--transition), border-color var(--transition);
   border-bottom: 1px solid transparent;
@@ -173,6 +175,23 @@ onUnmounted(() => {
   display: block;
 }
 
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(2px);
+}
+
+@media (max-width: 860px) {
+  .nav-backdrop { display: block; }
+}
+
 @media (max-width: 860px) {
   .hamburger {
     display: flex;
@@ -184,11 +203,13 @@ onUnmounted(() => {
     top: 100%;
     left: 0;
     right: 0;
+    z-index: 200;
     background: rgba(14, 14, 14, 0.98);
     flex-direction: column;
     padding: 16px;
     gap: 4px;
     border-top: 1px solid var(--border);
+    backdrop-filter: blur(14px);
   }
 
   .nav-links.open {

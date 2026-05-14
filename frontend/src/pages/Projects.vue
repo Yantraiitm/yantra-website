@@ -28,8 +28,8 @@
         </div>
 
         <div v-if="error && !loading" class="error-state">
-          <p v-if="rateLimited">⏳ GitHub API rate limit reached. Wait a few minutes and refresh.</p>
-          <p v-else>⚠️ Unable to load projects. Please try again later.</p>
+          <p v-if="rateLimited">GitHub API rate limit reached. Wait a few minutes and refresh.</p>
+          <p v-else>Unable to load projects. Please try again later.</p>
           <p style="margin-top:8px; font-size:0.8rem; color:var(--text-muted);">
             <a href="https://github.com/Yantraiitm" target="_blank" style="color:var(--amber);">Browse on GitHub →</a>
           </p>
@@ -41,7 +41,7 @@
             :key="repo.id"
             class="project-card"
           >
-            <div class="project-img project-img-icon">{{ getFallbackIcon(detectCategory(repo)) }}</div>
+            <div class="project-img project-img-icon" v-html="getFallbackIcon(detectCategory(repo))"></div>
             <div class="project-body">
               <div class="project-header">
                 <h3 class="project-title">{{ repo.name }}</h3>
@@ -57,9 +57,9 @@
                 <span v-for="topic in (repo.topics || []).slice(0, 3)" :key="topic" class="tech-tag">{{ topic }}</span>
               </div>
               <div class="project-stats">
-                <span class="stat">⭐ {{ repo.stargazers_count }}</span>
-                <span class="stat">🍴 {{ repo.forks_count }}</span>
-                <span class="stat">🕐 {{ formatDate(repo.updated_at) }}</span>
+                <span class="stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:12px;height:12px;display:inline;vertical-align:middle;margin-right:3px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>{{ repo.stargazers_count }}</span>
+                <span class="stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:12px;height:12px;display:inline;vertical-align:middle;margin-right:3px;"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M6 9v6M15.4 6A9 9 0 009 15.4"/></svg>{{ repo.forks_count }}</span>
+                <span class="stat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:12px;height:12px;display:inline;vertical-align:middle;margin-right:3px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>{{ formatDate(repo.updated_at) }}</span>
               </div>
               <a :href="repo.html_url" target="_blank" class="btn btn-ghost" style="margin-top:16px; font-size:0.7rem; padding:8px 18px;">
                 View Repository →
@@ -117,7 +117,14 @@ const CATEGORY_KEYWORDS = {
   iot: ['iot', 'mqtt', 'sensor', 'wireless', 'cloud', 'dashboard', 'telemetry'],
 }
 
-const FALLBACK_ICONS = { robotics: '🤖', embedded: '⚡', ai: '🧠', vision: '👁️', iot: '📡', default: '💻' }
+const FALLBACK_ICONS = {
+  robotics: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:48px;height:48px;color:#F59E0B"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M12 11V7M8 7h8M7 15h.01M17 15h.01"/><circle cx="12" cy="4" r="2"/></svg>',
+  embedded: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:48px;height:48px;color:#F59E0B"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M18 9h3M3 15h3M18 15h3"/></svg>',
+  ai: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:48px;height:48px;color:#F59E0B"><circle cx="12" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><path d="M12 7v4M12 11l-5 6M12 11l5 6"/></svg>',
+  vision: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:48px;height:48px;color:#F59E0B"><ellipse cx="12" cy="12" rx="10" ry="6"/><circle cx="12" cy="12" r="3"/></svg>',
+  iot: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:48px;height:48px;color:#F59E0B"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="currentColor"/></svg>',
+  default: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" style="width:48px;height:48px;color:#F59E0B"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+}
 
 function detectCategory(repo) {
   const topics = repo.topics || []
