@@ -114,6 +114,14 @@ const teamMembers = [
     description: 'Handles technical operations and supports robotics development.',
     skills: ['Technical Support', 'Robotics', 'Operations'],
   },
+  {
+    name: 'Jyoti Sharma',
+    role: 'Technical',
+    id: 9,
+    image: '/img/team/jyotitech.png',
+    description: 'Contributes to technical development and support.',
+    skills: ['Technical'],
+  },
 ]
 </script>
 
