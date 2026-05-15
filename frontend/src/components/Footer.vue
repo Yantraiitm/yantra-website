@@ -60,7 +60,7 @@
 
       <div class="foot-bottom">
         <div class="foot-copy">© 2026 Yantra Robotics Society · IIT Madras BS Degree Program</div>
-        <div class="foot-copy">Made with ⚡ kr_akhilesh</div>
+        <div class="foot-copy">Built by the Yantra web team</div>
       </div>
     </div>
   </footer>

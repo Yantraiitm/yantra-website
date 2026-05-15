@@ -10,7 +10,7 @@
 
   <section class="section">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:80px;">
+      <div class="about-mission-grid">
         <div class="card reveal" style="border-left:3px solid var(--amber);">
           <div style="width:40px;height:40px;margin-bottom:16px;color:var(--amber);"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
           <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.4rem;margin-bottom:12px;color:var(--amber);">Our Mission</h3>

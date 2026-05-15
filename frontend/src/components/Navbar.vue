@@ -18,7 +18,7 @@
         <li><RouterLink to="/events" @click="closeMobileMenu">Events</RouterLink></li>
         <li><RouterLink to="/gallery" @click="closeMobileMenu">Gallery</RouterLink></li>
         <li><RouterLink to="/blog" @click="closeMobileMenu">Blog</RouterLink></li>
-        <li><RouterLink to="/join" class="nav-join" @click="closeMobileMenu">Join →</RouterLink></li>
+        <li><RouterLink to="/join" class="nav-join" @click="closeMobileMenu">Join</RouterLink></li>
         <li><RouterLink to="/contact" @click="closeMobileMenu">Contact</RouterLink></li>
       </ul>
 
@@ -68,23 +68,23 @@ onUnmounted(() => {
   left: 0;
   right: 0;
   z-index: 200;
-  padding: 18px 0;
+  padding: 16px 0;
   transition: background var(--transition), padding var(--transition), border-color var(--transition);
   border-bottom: 1px solid transparent;
 }
 
 #navbar.scrolled {
-  background: rgba(14, 14, 14, 0.96);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  padding: 12px 0;
+  background: rgba(0, 0, 0, 0.84);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 10px 0;
   border-color: var(--border);
 }
 
 .nav-wrap {
-  max-width: 1200px;
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 0 28px;
+  width: min(100% - 32px, 1180px);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -93,12 +93,13 @@ onUnmounted(() => {
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
+  min-width: 0;
 }
 
 .logo-mark-img {
-  width: 50px;
-  height: 50px;
+  width: 66px;
+  height: auto;
   object-fit: contain;
 }
 
@@ -110,7 +111,7 @@ onUnmounted(() => {
 .logo-text {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 1.5rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0;
   color: var(--text-primary);
   line-height: 1;
 }
@@ -118,7 +119,7 @@ onUnmounted(() => {
 .logo-sub {
   font-family: 'DM Mono', monospace;
   font-size: 0.52rem;
-  color: var(--slate);
+  color: var(--accent-cyan);
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -126,7 +127,7 @@ onUnmounted(() => {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
 }
 
 .nav-links a {
@@ -135,25 +136,26 @@ onUnmounted(() => {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--slate);
-  padding: 7px 12px;
-  border-radius: 5px;
+  padding: 8px 11px;
+  border-radius: 8px;
   transition: color var(--transition), background var(--transition);
 }
 
 .nav-links a:hover,
 .nav-links a.router-link-active {
-  color: var(--amber);
-  background: rgba(245, 158, 11, 0.07);
+  color: var(--accent-cyan);
+  background: rgba(34, 211, 238, 0.08);
 }
 
 .nav-join {
-  background: var(--amber) !important;
-  color: #0E0E0E !important;
+  background: linear-gradient(135deg, var(--amber), #f97316) !important;
+  color: #07111e !important;
   font-weight: 600 !important;
 }
 
 .nav-join:hover {
-  background: #D97706 !important;
+  color: #07111e !important;
+  box-shadow: 0 10px 26px rgba(245, 158, 11, 0.24);
 }
 
 .hamburger {
@@ -164,12 +166,13 @@ onUnmounted(() => {
   padding: 4px;
   background: none;
   border: none;
+  border-radius: 8px;
 }
 
 .hamburger span {
   width: 22px;
   height: 2px;
-  background: var(--amber);
+  background: var(--accent-cyan);
   border-radius: 2px;
   transition: transform var(--transition), opacity var(--transition);
   display: block;
@@ -184,7 +187,7 @@ onUnmounted(() => {
   position: fixed;
   inset: 0;
   z-index: 99;
-  background: rgba(0,0,0,0.5);
+  background: rgba(2, 6, 23, 0.62);
   backdrop-filter: blur(2px);
 }
 
@@ -204,12 +207,13 @@ onUnmounted(() => {
     left: 0;
     right: 0;
     z-index: 200;
-    background: rgba(14, 14, 14, 0.98);
+    background: rgba(7, 11, 19, 0.96);
     flex-direction: column;
-    padding: 16px;
+    padding: 14px 16px 18px;
     gap: 4px;
     border-top: 1px solid var(--border);
     backdrop-filter: blur(14px);
+    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.34);
   }
 
   .nav-links.open {

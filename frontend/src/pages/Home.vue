@@ -8,11 +8,11 @@
       <div>
         <div class="hero-badge">
           <div class="badge-dot"></div>
-          Robotics Society · IIT Madras BS Degree Program
+          Robotics Society | IIT Madras BS Degree Program
         </div>
         <h1 class="hero-title">Yantra<br><span class="title-accent">ROBOTICS</span></h1>
-        <p class="hero-tagline"><b>Build</b> · <b>Innovate</b> · <b>Automate</b></p>
-        <p class="hero-desc">The premier student robotics society of IIT Madras BS. We design, build, and deploy real machines — combat bots, autonomous systems, AI vision platforms, and more.</p>
+        <p class="hero-tagline"><b>Build</b> | <b>Innovate</b> | <b>Automate</b></p>
+        <p class="hero-desc">The premier student robotics society of IIT Madras BS. We design, build, and deploy real machines: combat bots, autonomous systems, AI vision platforms, and more.</p>
         <div class="hero-btns">
           <RouterLink to="/projects" class="btn btn-amber">Explore Projects</RouterLink>
           <RouterLink to="/join" class="btn btn-ghost">Apply to Join</RouterLink>
@@ -22,7 +22,7 @@
         <div class="status-card">
           <div class="sc-top">
             <span class="sc-label">Club Overview</span>
-            <span class="sc-live"><div class="sc-live-dot"></div>Active · 2026</span>
+            <span class="sc-live"><div class="sc-live-dot"></div>Active | 2026</span>
           </div>
           <div class="sc-stats">
             <div class="sc-stat"><div class="sc-num">1200<sup>+</sup></div><div class="sc-lbl">Members</div></div>
@@ -39,8 +39,8 @@
           </div>
           <div class="sc-terminal">
             <span class="prompt">yantra@iitm-bs:~$ </span>robot.init()<br>
-            <span style="color:var(--amber)">✓</span> sensors.online<br>
-            <span style="color:var(--amber)">✓</span> systems.nominal<br>
+            <span style="color:var(--amber)">OK</span> sensors.online<br>
+            <span style="color:var(--amber)">OK</span> systems.nominal<br>
             <span class="prompt">yantra@iitm-bs:~$ </span><span class="cursor"></span>
           </div>
         </div>
@@ -78,11 +78,11 @@
           <div class="eyebrow reveal">About Yantra</div>
           <h2 class="sec-title reveal">Engineering <em>the future</em>,<br>setting a benchmark everytime.</h2>
           <div class="about-text reveal">
-            <p>Yantra is the Robotics Society of the IIT Madras BS Degree Program — a community of builders, coders, designers, and tinkerers united by one goal: making real things.</p>
+            <p>Yantra is the Robotics Society of the IIT Madras BS Degree Program: a community of builders, coders, designers, and tinkerers united by one goal: making real things.</p>
             <p>Whether you start with zero experience or you've already built robots, Yantra accelerates your journey through projects, workshops, and competitions.</p>
           </div>
           <div style="margin-top:26px;" class="reveal">
-            <RouterLink to="/about" class="btn btn-ghost">About us →</RouterLink>
+            <RouterLink to="/about" class="btn btn-ghost">About us</RouterLink>
           </div>
         </div>
         <div class="domains reveal">
@@ -135,7 +135,7 @@
           <div class="eyebrow reveal">Trusted By Industry Leaders</div>
           <h2 class="sec-title reveal">Our <em>Collaborators</em></h2>
         </div>
-        <a href="mailto:yantra@study.iitm.ac.in" class="btn btn-ghost reveal" style="align-self:flex-end;">Become a Partner →</a>
+        <a href="mailto:yantra@study.iitm.ac.in" class="btn btn-ghost reveal" style="align-self:flex-end;">Become a Partner</a>
       </div>
       <div class="collaborators-grid">
         <div class="collab-card reveal">
@@ -221,75 +221,87 @@
       </div>
       <div class="papers-grid">
         <div class="paper-card reveal">
-          <div class="paper-icon">📄</div>
+          <div class="paper-icon" aria-hidden="true">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><path d="M22 10h26l18 18v36a6 6 0 0 1-6 6H22a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M52 10v18h18" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M28 40h24" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M28 52h18" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M28 64h12" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>
+          </div>
           <div class="paper-body">
             <div class="paper-title">Gravitone: Space-Time Sonification Interface</div>
             <div class="paper-authors">Kratika Jain, Allwin Williams, Akhilesh Kumar Bhagat, et al.</div>
             <div class="paper-conference">NIME 2025 (New Interfaces for Musical Expression)</div>
-            <div class="paper-meta"><span class="paper-status accepted">✓ Accepted</span><span class="paper-date">2025</span></div>
+            <div class="paper-meta"><span class="paper-status accepted">Accepted</span><span class="paper-date">2025</span></div>
             <p class="paper-desc">Novel musical instrument using data sonification techniques inspired by space-time mesh models.</p>
             <div class="paper-tags"><span class="t-tag">Music Tech</span><span class="t-tag">Sonification</span><span class="t-tag">HCI</span></div>
-            <a href="https://nime.org/proc/nime2025_95/index.html" class="paper-link" target="_blank">View Paper →</a>
+            <a href="https://nime.org/proc/nime2025_95/index.html" class="paper-link" target="_blank">View Paper</a>
           </div>
         </div>
         <div class="paper-card reveal">
-          <div class="paper-icon">📄</div>
+          <div class="paper-icon" aria-hidden="true">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><path d="M22 10h26l18 18v36a6 6 0 0 1-6 6H22a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M52 10v18h18" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M28 40h24" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M28 52h18" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M28 64h12" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>
+          </div>
           <div class="paper-body">
             <div class="paper-title">Swaringz: Haptic Musical Performance System</div>
             <div class="paper-authors">Sumit Kumar, Soubhagya K Dev, Lakshmi Srinath, et al.</div>
             <div class="paper-conference">UIST 2025 (ACM Symposium on User Interface Software)</div>
-            <div class="paper-meta"><span class="paper-status accepted">✓ Accepted</span><span class="paper-date">2025</span></div>
+            <div class="paper-meta"><span class="paper-status accepted">Accepted</span><span class="paper-date">2025</span></div>
             <p class="paper-desc">Ergonomics-based instrument with haptic feedback enhancing intuitive musical interaction.</p>
             <div class="paper-tags"><span class="t-tag">Haptics</span><span class="t-tag">Music</span><span class="t-tag">UIST</span></div>
-            <a href="https://dl.acm.org/doi/full/10.1145/3746058.3758455" class="paper-link" target="_blank">View Paper →</a>
+            <a href="https://dl.acm.org/doi/full/10.1145/3746058.3758455" class="paper-link" target="_blank">View Paper</a>
           </div>
         </div>
         <div class="paper-card reveal">
-          <div class="paper-icon">📄</div>
+          <div class="paper-icon" aria-hidden="true">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><path d="M22 10h26l18 18v36a6 6 0 0 1-6 6H22a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M52 10v18h18" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M28 40h24" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M28 52h18" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M28 64h12" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>
+          </div>
           <div class="paper-body">
             <div class="paper-title">Assistive HCI Frameworks for Motor-Impaired Users</div>
             <div class="paper-authors">Prakriti Mukherjee, Lakshmi Srinath, Kratika Jain, et al.</div>
             <div class="paper-conference">CHI 2026 (Conference on Human Factors in Computing)</div>
-            <div class="paper-meta"><span class="paper-status accepted">✓ Accepted</span><span class="paper-date">2026</span></div>
+            <div class="paper-meta"><span class="paper-status accepted">Accepted</span><span class="paper-date">2026</span></div>
             <p class="paper-desc">Research on accessible interfaces leveraging eye-gaze, gesture, and adaptive control systems.</p>
             <div class="paper-tags"><span class="t-tag">Accessibility</span><span class="t-tag">HCI</span><span class="t-tag">CHI</span></div>
-            <a href="#" class="paper-link">View Paper →</a>
+            <a href="#" class="paper-link">View Paper</a>
           </div>
         </div>
         <div class="paper-card reveal">
-          <div class="paper-icon">📄</div>
+          <div class="paper-icon" aria-hidden="true">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><path d="M22 10h26l18 18v36a6 6 0 0 1-6 6H22a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M52 10v18h18" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M28 40h24" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M28 52h18" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M28 64h12" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>
+          </div>
           <div class="paper-body">
             <div class="paper-title">GraviTone: A Tangible Musical Interface using Gravity Well</div>
             <div class="paper-authors">Kratika Jain*, Allwin Williams, Akhilesh Kumar Bhagat, Sukanth K, et al.</div>
             <div class="paper-conference">India HCI 2024 (ID 227)</div>
-            <div class="paper-meta"><span class="paper-status accepted">✓ Poster</span><span class="paper-date">2024</span></div>
+            <div class="paper-meta"><span class="paper-status accepted">Poster</span><span class="paper-date">2024</span></div>
             <p class="paper-desc">Tangible musical interface using gravity well for sound and music creation</p>
             <div class="paper-tags"><span class="t-tag">Music Tech</span><span class="t-tag">Tangible UI</span><span class="t-tag">Gravity</span></div>
-            <a href="https://www.2025.indiahci.org/programme_1/posters-demos-artworks" class="paper-link" target="_blank">View Poster →</a>
+            <a href="https://www.2025.indiahci.org/programme_1/posters-demos-artworks" class="paper-link" target="_blank">View Poster</a>
           </div>
         </div>
         <div class="paper-card reveal">
-          <div class="paper-icon">📄</div>
+          <div class="paper-icon" aria-hidden="true">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><path d="M22 10h26l18 18v36a6 6 0 0 1-6 6H22a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M52 10v18h18" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M28 40h24" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M28 52h18" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M28 64h12" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>
+          </div>
           <div class="paper-body">
             <div class="paper-title">Swarings: Exploring Expressive Freedom through Ring-Based Musical Interaction</div>
             <div class="paper-authors">Sumit Kumar, Soubhagya K Dev*, Lakshmi Srinath, Ashish Kumar, et al.</div>
             <div class="paper-conference">India HCI 2024 (ID 228)</div>
-            <div class="paper-meta"><span class="paper-status accepted">✓ Poster</span><span class="paper-date">2024</span></div>
+            <div class="paper-meta"><span class="paper-status accepted">Poster</span><span class="paper-date">2024</span></div>
             <p class="paper-desc">Ring-based musical interaction system for expressive musical performance</p>
             <div class="paper-tags"><span class="t-tag">Music</span><span class="t-tag">Wearable</span><span class="t-tag">Ring</span></div>
-            <a href="https://www.2025.indiahci.org/programme_1/posters-demos-artworks" class="paper-link" target="_blank">View Poster →</a>
+            <a href="https://www.2025.indiahci.org/programme_1/posters-demos-artworks" class="paper-link" target="_blank">View Poster</a>
           </div>
         </div>
         <div class="paper-card reveal">
-          <div class="paper-icon">📄</div>
+          <div class="paper-icon" aria-hidden="true">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"><path d="M22 10h26l18 18v36a6 6 0 0 1-6 6H22a6 6 0 0 1-6-6V16a6 6 0 0 1 6-6Z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M52 10v18h18" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/><path d="M28 40h24" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M28 52h18" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M28 64h12" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/></svg>
+          </div>
           <div class="paper-body">
             <div class="paper-title">The Tabla Glove: An Accompanist for Musical Training and Exploration</div>
             <div class="paper-authors">Prakriti Mukherjee*, Lakshmi Srinath, Kratika Jain, et al.</div>
             <div class="paper-conference">India HCI 2024 (ID 229)</div>
-            <div class="paper-meta"><span class="paper-status accepted">✓ Poster</span><span class="paper-date">2024</span></div>
+            <div class="paper-meta"><span class="paper-status accepted">Poster</span><span class="paper-date">2024</span></div>
             <p class="paper-desc">Smart glove system for tabla training and musical exploration</p>
             <div class="paper-tags"><span class="t-tag">Tabla</span><span class="t-tag">Glove</span><span class="t-tag">Training</span></div>
-            <a href="https://www.2025.indiahci.org/programme_1/posters-demos-artworks" class="paper-link" target="_blank">View Poster →</a>
+            <a href="https://www.2025.indiahci.org/programme_1/posters-demos-artworks" class="paper-link" target="_blank">View Poster</a>
           </div>
         </div>
       </div>
@@ -304,35 +316,35 @@
           <div class="eyebrow reveal">What's on</div>
           <h2 class="sec-title reveal">Upcoming <em>Events</em></h2>
         </div>
-        <RouterLink to="/events" class="btn btn-ghost reveal" style="align-self:flex-end;">All events →</RouterLink>
+        <RouterLink to="/events" class="btn btn-ghost reveal" style="align-self:flex-end;">All events</RouterLink>
       </div>
       <div class="events-stack">
         <div class="ev reveal">
           <div class="ev-cal"><div class="ev-day">18</div><div class="ev-mo">Mar</div></div>
           <div>
-            <div class="ev-type">▶ Workshop</div>
+            <div class="ev-type">Workshop</div>
             <div class="ev-name">Embedded Systems Workshop</div>
-            <div class="ev-info">GPIO, UART &amp; FreeRTOS hands-on · <b>Prof. Viveka K R</b></div>
+            <div class="ev-info">GPIO, UART &amp; FreeRTOS hands-on | <b>Prof. Viveka K R</b></div>
           </div>
-          <RouterLink to="/events" class="btn btn-ghost" style="font-size:0.62rem;padding:9px 16px;white-space:nowrap;">Register →</RouterLink>
+          <RouterLink to="/events" class="btn btn-ghost" style="font-size:0.62rem;padding:9px 16px;white-space:nowrap;">Register</RouterLink>
         </div>
         <div class="ev reveal">
           <div class="ev-cal"><div class="ev-day">05</div><div class="ev-mo">Apr</div></div>
           <div>
-            <div class="ev-type">▶ Hackathon</div>
+            <div class="ev-type">Hackathon</div>
             <div class="ev-name">Robotics Hackathon 2026</div>
-            <div class="ev-info">24-hour build · <b>₹10k prize · Teams of 2–4</b></div>
+            <div class="ev-info">24-hour build | <b>Rs 10k prize | Teams of 2-4</b></div>
           </div>
-          <RouterLink to="/events" class="btn btn-amber" style="font-size:0.62rem;padding:9px 16px;white-space:nowrap;">Register →</RouterLink>
+          <RouterLink to="/events" class="btn btn-amber" style="font-size:0.62rem;padding:9px 16px;white-space:nowrap;">Register</RouterLink>
         </div>
         <div class="ev reveal">
           <div class="ev-cal"><div class="ev-day">22</div><div class="ev-mo">Apr</div></div>
           <div>
-            <div class="ev-type">▶ Guest Lecture</div>
+            <div class="ev-type">Guest Lecture</div>
             <div class="ev-name">AI in Modern Robotics</div>
-            <div class="ev-info">Foundation models meet real robots · <b>Free entry</b></div>
+            <div class="ev-info">Foundation models meet real robots | <b>Free entry</b></div>
           </div>
-          <RouterLink to="/events" class="btn btn-ghost" style="font-size:0.62rem;padding:9px 16px;white-space:nowrap;">Notify me →</RouterLink>
+          <RouterLink to="/events" class="btn btn-ghost" style="font-size:0.62rem;padding:9px 16px;white-space:nowrap;">Notify me</RouterLink>
         </div>
       </div>
     </div>
@@ -344,9 +356,9 @@
       <div class="cta-box reveal">
         <div class="cta-glow"></div>
         <h2 class="cta-title">Ready to <span>build</span> something real?</h2>
-        <p class="cta-desc">No experience needed — just curiosity. Join Yantra and work on projects that actually ship, compete, and teach you more than any textbook can.</p>
+        <p class="cta-desc">No experience needed, just curiosity. Join Yantra and work on projects that actually ship, compete, and teach you more than any textbook can.</p>
         <div class="cta-btns">
-          <RouterLink to="/join" class="btn btn-amber" style="padding:13px 30px;font-size:0.76rem;">Apply Now →</RouterLink>
+          <RouterLink to="/join" class="btn btn-amber" style="padding:13px 30px;font-size:0.76rem;">Apply Now</RouterLink>
           <RouterLink to="/contact" class="btn btn-ghost" style="padding:13px 30px;font-size:0.76rem;">Get in Touch</RouterLink>
         </div>
       </div>

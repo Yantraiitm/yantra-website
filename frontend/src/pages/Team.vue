@@ -106,6 +106,14 @@ const teamMembers = [
     description: 'Leads research initiatives for advanced robotics solutions.',
     skills: ['Research', 'Innovation', 'Analysis'],
   },
+  {
+    name: 'Abhay Tiwari',
+    role: 'Technical',
+    id: 8,
+    image: '/img/team/abhaytech.jpg',
+    description: 'Handles technical operations and supports robotics development.',
+    skills: ['Technical Support', 'Robotics', 'Operations'],
+  },
 ]
 </script>
 
@@ -138,7 +146,7 @@ const teamMembers = [
 }
 
 .team-grid-feature {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 360px));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
 }
 
 .team-card-modern {
@@ -149,7 +157,7 @@ const teamMembers = [
     linear-gradient(145deg, rgba(245, 158, 11, 0.08), transparent 38%),
     var(--bg-card);
   position: relative;
-  max-height: 520px;
+  height: 100%;
 }
 
 .team-card-modern::before {
@@ -168,7 +176,7 @@ const teamMembers = [
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 57%;
+  aspect-ratio: 4 / 3.35;
   background: linear-gradient(135deg, #090b14, #111827);
   border-bottom: 1px solid var(--border);
   /* aspect-ratio: 2/3; */
@@ -254,6 +262,10 @@ const teamMembers = [
 
   .team-grid-feature {
     grid-template-columns: 1fr;
+  }
+
+  .team-card-body {
+    padding: 18px;
   }
 }
 </style>
