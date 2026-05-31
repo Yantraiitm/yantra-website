@@ -35,13 +35,12 @@ def create_app():
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(team_bp, url_prefix='/api/team')
 
-    return app
-
-if __name__ == '__main__':
-    app = create_app()
     with app.app_context():
         db.create_all()
-        # You can add logic here to create a default Admin role or user
+
+        admin_email = os.environ.get('ADMIN_EMAIL', 'admin@yantra.local')
+        admin_password = os.environ.get('ADMIN_PASSWORD', 'Admin@123')
+        admin_name = os.environ.get('ADMIN_NAME', 'Site Admin')
 
         admin_role = Role.query.filter_by(name='admin').first()
         editor_role = Role.query.filter_by(name='editor').first()
@@ -59,4 +58,22 @@ if __name__ == '__main__':
 
         db.session.commit()
 
+        if admin_email and admin_password:
+            existing_admin = User.query.filter_by(email=admin_email).first()
+            if not existing_admin:
+                admin_user = User(
+                    name=admin_name,
+                    email=admin_email,
+                    password=hash_password(admin_password),
+                    active=True
+                )
+                admin_user.roles.append(admin_role)
+                db.session.add(admin_user)
+                db.session.commit()
+                print(f'Created default admin account: {admin_email}')
+
+    return app
+
+if __name__ == '__main__':
+    app = create_app()
     app.run(debug=True, port=5000)
