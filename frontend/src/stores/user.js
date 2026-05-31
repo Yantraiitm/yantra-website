@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { authService } from '../services/supabase'
+import { authService } from '../services/auth'
 
 export const useUserStore = defineStore('user', () => {
   const user = ref(null)
@@ -8,15 +8,16 @@ export const useUserStore = defineStore('user', () => {
   const error = ref(null)
 
   const isAuthenticated = computed(() => !!user.value)
-  const isAdmin = computed(() => user.value?.role === 'admin')
+  const isAdmin = computed(() => user.value?.roles?.includes('admin'))
 
-  async function getCurrentUser() {
+  async function fetchCurrentUser() {
     loading.value = true
     try {
       const currentUser = await authService.getCurrentUser()
       user.value = currentUser
+      error.value = null
     } catch (err) {
-      error.value = err.message
+      error.value = err.response?.data?.error || err.message
       user.value = null
     } finally {
       loading.value = false
@@ -25,12 +26,15 @@ export const useUserStore = defineStore('user', () => {
 
   async function login(email, password) {
     loading.value = true
+    error.value = null
     try {
-      const session = await authService.signIn(email, password)
-      user.value = session.user
-      localStorage.setItem('auth_token', session.session.access_token)
+      const data = await authService.login(email, password)
+      localStorage.setItem('auth_token', data.token)
+      user.value = data.user
     } catch (err) {
-      error.value = err.message
+      error.value = err.response?.data?.error || err.message
+      user.value = null
+      throw err
     } finally {
       loading.value = false
     }
@@ -39,23 +43,12 @@ export const useUserStore = defineStore('user', () => {
   async function logout() {
     loading.value = true
     try {
-      await authService.signOut()
+      await authService.logout()
       user.value = null
       localStorage.removeItem('auth_token')
+      error.value = null
     } catch (err) {
-      error.value = err.message
-    } finally {
-      loading.value = false
-    }
-  }
-
-  async function signup(email, password) {
-    loading.value = true
-    try {
-      const data = await authService.signUp(email, password)
-      user.value = data.user
-    } catch (err) {
-      error.value = err.message
+      error.value = err.response?.data?.error || err.message
     } finally {
       loading.value = false
     }
@@ -67,9 +60,8 @@ export const useUserStore = defineStore('user', () => {
     error,
     isAuthenticated,
     isAdmin,
-    getCurrentUser,
+    fetchCurrentUser,
     login,
-    logout,
-    signup
+    logout
   }
 })

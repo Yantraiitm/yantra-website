@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'
 
 export const apiClient = axios.create({
   baseURL: `${API_URL}/api`,
@@ -13,8 +13,10 @@ export const apiClient = axios.create({
 apiClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('auth_token')
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`
+    const isAuthEndpoint = config.url?.includes('/auth/login') || config.url?.includes('/auth/register')
+
+    if (token && !isAuthEndpoint) {
+      config.headers.Authorization = token
     }
     return config
   },
@@ -25,7 +27,8 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response?.status === 401) {
+    const isLoginRequest = error.config?.url?.includes('/auth/login')
+    if (error.response?.status === 401 && !isLoginRequest) {
       localStorage.removeItem('auth_token')
       window.location.href = '/login'
     }

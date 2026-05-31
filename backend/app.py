@@ -15,7 +15,7 @@ def create_app():
     # Configuration
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-yantra')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///yantra.db'
-    app.config['SECURITY_PASSWORD_HASH'] = 'bcrypt'
+    app.config['SECURITY_PASSWORD_HASH'] = 'pbkdf2_sha512'
     app.config['SECURITY_PASSWORD_SALT'] = 'yantra-salt'
     app.config['SECURITY_REGISTERABLE'] = False
     app.config['SECURITY_SEND_REGISTER_EMAIL'] = False
@@ -43,9 +43,6 @@ if __name__ == '__main__':
         db.create_all()
         # You can add logic here to create a default Admin role or user
 
-        admin_email = os.environ.get('ADMIN_EMAIL', 'admin@yantra.local')
-        admin_password = os.environ.get('ADMIN_PASSWORD', 'Admin@123')
-
         admin_role = Role.query.filter_by(name='admin').first()
         editor_role = Role.query.filter_by(name='editor').first()
         member_role = Role.query.filter_by(name='member').first()
@@ -62,15 +59,4 @@ if __name__ == '__main__':
 
         db.session.commit()
 
-        if not User.query.filter_by(email=admin_email).first():
-            admin_user = User(
-                name='Site Admin',
-                email=admin_email,
-                password=hash_password(admin_password),
-                active=True
-            )
-            admin_user.roles.append(admin_role)
-            db.session.add(admin_user)
-            db.session.commit()
-            print(f'Created default admin account: {admin_email}')
     app.run(debug=True, port=5000)

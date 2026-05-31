@@ -20,6 +20,9 @@
         <li><RouterLink to="/blog" @click="closeMobileMenu">Blog</RouterLink></li>
         <li><RouterLink to="/join" class="nav-join" @click="closeMobileMenu">Join</RouterLink></li>
         <li><RouterLink to="/contact" @click="closeMobileMenu">Contact</RouterLink></li>
+        <li v-if="!isAuthenticated"><RouterLink to="/login" class="nav-login" @click="closeMobileMenu">Login</RouterLink></li>
+        <li v-if="isAuthenticated"><RouterLink to="/dashboard" class="nav-login" @click="closeMobileMenu">Dashboard</RouterLink></li>
+        <li v-if="isAuthenticated"><button type="button" class="nav-logout" @click="handleLogout">Logout</button></li>
       </ul>
 
       <button class="hamburger" :class="{ active: mobileMenuOpen }" @click="toggleMobileMenu" aria-label="Toggle navigation">
@@ -35,10 +38,14 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
+import { useUserStore } from '../stores/user'
 
 const isScrolled = ref(false)
 const mobileMenuOpen = ref(false)
+const router = useRouter()
+const userStore = useUserStore()
+const isAuthenticated = userStore.isAuthenticated
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 48
@@ -50,6 +57,11 @@ const toggleMobileMenu = () => {
 
 const closeMobileMenu = () => {
   mobileMenuOpen.value = false
+}
+
+const handleLogout = async () => {
+  await userStore.logout()
+  router.push('/')
 }
 
 onMounted(() => {
@@ -156,6 +168,32 @@ onUnmounted(() => {
 .nav-join:hover {
   color: #07111e !important;
   box-shadow: 0 10px 26px rgba(245, 158, 11, 0.24);
+}
+
+.nav-login,
+.nav-logout {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(34, 211, 238, 0.12);
+  color: var(--accent-cyan);
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.nav-login:hover,
+.nav-logout:hover {
+  background: rgba(34, 211, 238, 0.18);
+  color: #d9f99d;
+}
+
+.nav-logout {
+  background: transparent;
+  border-color: rgba(148, 163, 184, 0.2);
+  color: var(--text-primary);
+}
+
+.nav-logout:hover {
+  color: #fbbf24;
 }
 
 .hamburger {
