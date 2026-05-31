@@ -85,7 +85,7 @@ Create a `.env.local` file:
 ```env
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_ANON_KEY=your_supabase_public_key
-VITE_API_URL=http://localhost:5000
+VITE_API_BASE_URL=http://localhost:5000
 VITE_ENVIRONMENT=development
 ```
 
@@ -193,7 +193,7 @@ npm run build
 Environment variables in Vercel dashboard:
 - `VITE_SUPABASE_URL`
 - `VITE_SUPABASE_ANON_KEY`
-- `VITE_API_URL`
+- `VITE_API_BASE_URL`
 
 ### Netlify
 ```bash
