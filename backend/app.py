@@ -16,7 +16,7 @@ def create_app():
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'dev-key-yantra')
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///yantra.db'
     app.config['SECURITY_PASSWORD_HASH'] = 'pbkdf2_sha512'
-    app.config['SECURITY_PASSWORD_SALT'] = 'yantra-salt'
+    app.config['SECURITY_PASSWORD_SALT'] = os.environ.get('SECRET_KEY', 'yantra-salt')
     app.config['SECURITY_REGISTERABLE'] = False
     app.config['SECURITY_SEND_REGISTER_EMAIL'] = False
     app.config['SECURITY_TOKEN_AUTHENTICATION_HEADER'] = 'Authorization'
