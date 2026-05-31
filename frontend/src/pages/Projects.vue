@@ -109,6 +109,42 @@ const tabs = [
 
 const GITHUB_USERS = ['Ester-D-Kate', 'Okami-423', 'akhileshkrbhagat1']
 
+const EXTRA_REPOS = [
+  {
+    id: -101,
+    name: 'Predominant-Music',
+    html_url: 'https://github.com/cscprojishnu/Predominant-Music',
+    description: 'AI-powered music genre detection using audio feature extraction and machine learning models.',
+    language: 'Python',
+    topics: ['ai', 'ml', 'audio'],
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: -102,
+    name: 'Solar-Safe-Edge-AI-Powered-Fault-Detection-in-Photovoltaic-Modules-using-AI-ML',
+    html_url: 'https://github.com/cscprojishnu/Solar-Safe-Edge-AI-Powered-Fault-Detection-in-Photovoltaic-Modules-using-AI-ML',
+    description: 'Edge AI fault detection for photovoltaic modules that uses ML to monitor solar panel health and detect failures.',
+    language: 'Python',
+    topics: ['ai', 'ml', 'edge-ai', 'solar'],
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: new Date().toISOString(),
+  },
+  {
+    id: -103,
+    name: 'ADMM-for-Sparse-Deep-Neural-Network-Pruning-USING-CNN-INN',
+    html_url: 'https://github.com/cscprojishnu/ADMM-for-Sparse-Deep-Neural-Network-Pruning-USING-CNN-INN',
+    description: 'ADMM-based sparse pruning for CNNs to reduce neural network size while preserving model accuracy.',
+    language: 'Python',
+    topics: ['ai', 'ml', 'deep-learning', 'pruning'],
+    stargazers_count: 0,
+    forks_count: 0,
+    updated_at: new Date().toISOString(),
+  },
+]
+
 const CATEGORY_KEYWORDS = {
   robotics: ['robot', 'rover', 'arm', 'drone', 'autonomous', 'navigation', 'slam'],
   embedded: ['embedded', 'esp32', 'arduino', 'stm32', 'microcontroller', 'pcb', 'firmware'],
@@ -194,16 +230,18 @@ onMounted(async () => {
       if (data) data.forEach(r => { r.owner_username = user; all.push(r) })
     }
 
-    // Deduplicate by repo id
+    // Deduplicate by repo id and merge with explicit AI/ML projects
     const seen = new Set()
-    repos.value = all.filter(r => { if (seen.has(r.id)) return false; seen.add(r.id); return true })
+    const fetched = all.filter(r => { if (seen.has(r.id)) return false; seen.add(r.id); return true })
+    repos.value = [...EXTRA_REPOS, ...fetched]
 
-    if (repos.value.length === 0) error.value = true
+    if (repos.value.length === EXTRA_REPOS.length) error.value = true
     else {
       try { localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: repos.value })) } catch {}
     }
   } catch {
     error.value = true
+    repos.value = [...EXTRA_REPOS]
   } finally {
     loading.value = false
   }
