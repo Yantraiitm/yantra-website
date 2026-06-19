@@ -147,6 +147,30 @@ const teamMembers = [
     description: 'Contributes to technical development and support.',
     skills: ['Technical'],
   },
+  {
+    name: 'Vivek Rawat',
+    role: 'Yantra Admin Council · Coordinator, Tech Lead',
+    id: 13,
+    image: '/img/team/vivek.jpeg',
+    description: 'Electronics Systems member focused on coordination, technical leadership, and brainstorming for Yantra Robotics Society initiatives.',
+    skills: ['Electronics', 'Leadership', 'Technical Strategy'],
+  },
+  {
+    name: 'Kural Amuthan M S J',
+    role: 'Yantra Technical Core',
+    id: 14,
+    image: '/img/team/kural.jpg',
+    description: 'Data Science member helping coordinate workshops for schools and supporting outreach activities for Yantra.',
+    skills: ['Workshops', 'Outreach', 'Data Science'],
+  },
+  {
+    name: 'Shubham Chakraborty',
+    role: 'Yantra Technical Core',
+    id: 15,
+    image: '/img/team/shubham.jpg',
+    description: 'Data Science member interested in applying deep learning concepts to drone systems and building indigenous autonomous solutions.',
+    skills: ['Deep Learning', 'Drones', 'AI Systems'],
+  },
 ]
 </script>
 
