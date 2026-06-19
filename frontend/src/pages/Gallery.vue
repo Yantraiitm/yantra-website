@@ -101,34 +101,20 @@
 
         <template v-if="activeFilter === 'all' || activeFilter === 'competitions'">
           <span class="tag">// Competitions</span>
-          <h2 class="section-title reveal" style="margin-bottom:24px;">Competition Highlights</h2>
-          <div class="gallery-grid-main" style="margin-bottom:48px;">
-            <div class="gallery-item-main large reveal">
-              <img src="/img/gallery/Comp_2.jpeg" alt="RRCC">
-              <div class="gallery-overlay">
-                <div class="gallery-overlay-title">RRCC</div>
-                <div class="gallery-overlay-sub"></div>
+          <h2 class="section-title reveal" style="margin-bottom:16px;">Robo Dominion</h2>
+          <div class="competition-showcase reveal" style="margin-bottom:48px;">
+            <div class="competition-panel">
+              <div class="competition-text">
+                <span class="competition-eyebrow">Competition Highlights</span>
+                <p>Moments from Robo Dominion, featuring key photos and action-packed videos.</p>
               </div>
-            </div>
-            <div class="gallery-item-main reveal">
-              <img src="/img/gallery/Comp_1.jpeg" alt="RRCC">
-              <div class="gallery-overlay">
-                <div class="gallery-overlay-title">RRCC</div>
-                <div class="gallery-overlay-sub"></div>
-              </div>
-            </div>
-            <div class="gallery-item-main reveal">
-              <img src="/img/gallery/Comp_5.jpeg" alt="RRCC">
-              <div class="gallery-overlay">
-                <div class="gallery-overlay-title">RRCC</div>
-                <div class="gallery-overlay-sub"></div>
-              </div>
-            </div>
-            <div class="gallery-item-main reveal">
-              <img src="/img/gallery/Comp_3.png" alt="RRCC">
-              <div class="gallery-overlay">
-                <div class="gallery-overlay-title">RRCC</div>
-                <div class="gallery-overlay-sub"></div>
+              <div class="competition-media-grid">
+                <div class="media-card reveal" v-for="image in roboDominionImages" :key="image.name">
+                  <img :src="image.src" :alt="image.alt">
+                </div>
+                <div class="media-card reveal" v-for="video in roboDominionVideos" :key="video.name">
+                  <video :src="video.src" :poster="roboDominionPoster" controls playsinline preload="metadata"></video>
+                </div>
               </div>
             </div>
           </div>
@@ -182,6 +168,16 @@ import { useScrollReveal } from '../composables/useScrollReveal'
 useScrollReveal()
 
 const activeFilter = ref('all')
+const roboDominionPoster = '/img/gallery/robo-dominion/A.jpeg'
+const roboDominionImages = [
+  { name: 'A', src: '/img/gallery/robo-dominion/A.jpeg', alt: 'Robo Dominion photo A' },
+  { name: 'B', label: 'Photo B', src: '/img/gallery/robo-dominion/B.jpeg', alt: 'Robo Dominion photo B' },
+]
+const roboDominionVideos = Array.from({ length: 7 }, (_, index) => ({
+  name: `${index + 1}`,
+  label: `${index + 1}`,
+  src: `/img/gallery/robo-dominion/${index + 1}.mp4`,
+}))
 const tabs = [
   { value: 'all', label: 'All' },
   { value: 'workshops', label: 'Workshops' },
@@ -249,7 +245,74 @@ const tabs = [
   color: var(--accent-cyan);
   letter-spacing: 0.1em;
 }
+.competition-showcase {
+  width: 100%;
+}
+.competition-panel {
+  background:
+    linear-gradient(180deg, rgba(3, 10, 24, 0.92), rgba(7, 13, 30, 0.98));
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.competition-text {
+  margin-bottom: 18px;
+}
+.competition-eyebrow {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+}
+.competition-text p {
+  margin: 0;
+  max-width: 60ch;
+  color: var(--text-muted);
+}
+.competition-media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+.media-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(4, 12, 29, 0.95), rgba(3, 7, 18, 0.98));
+  aspect-ratio: 4 / 3;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.media-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-glow);
+  box-shadow: 0 12px 30px rgba(0, 184, 255, 0.12);
+}
+.media-card img,
+.media-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.media-card video {
+  background: #000;
+}
+.media-card::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0;
+  height: 48%;
+  background: linear-gradient(180deg, transparent, rgba(2, 6, 18, 0.92));
+  pointer-events: none;
+}
 @media (max-width: 640px) {
   .gallery-item-main.large { grid-column: span 1; }
+  .competition-panel { padding: 18px; }
+  .competition-media-grid { grid-template-columns: 1fr; }
 }
 </style>
