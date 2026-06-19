@@ -1,4 +1,4 @@
-import { onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { onMounted, onBeforeUnmount, onUpdated, nextTick } from 'vue'
 
 export function useScrollReveal() {
   let io
@@ -16,13 +16,18 @@ export function useScrollReveal() {
     })
   }
 
+  const forceRevealAll = () => {
+    document.querySelectorAll('.reveal').forEach((el) => {
+      el.classList.add('visible', 'in')
+      el.dataset.revealBound = 'true'
+    })
+  }
+
   onMounted(async () => {
     await nextTick()
 
     if (!('IntersectionObserver' in window)) {
-      document.querySelectorAll('.reveal').forEach((el) => {
-        el.classList.add('visible', 'in')
-      })
+      forceRevealAll()
       return
     }
 
@@ -48,6 +53,20 @@ export function useScrollReveal() {
     })
 
     observeRevealElements()
+  })
+
+  onUpdated(() => {
+    requestAnimationFrame(() => {
+      if (!io) return
+      document.querySelectorAll('.reveal').forEach((el) => {
+        if (!el.dataset.revealBound) {
+          el.dataset.revealBound = 'true'
+          el.style.transitionDelay = '0s'
+          io.observe(el)
+        }
+      })
+      observeRevealElements()
+    })
   })
 
   onBeforeUnmount(() => {

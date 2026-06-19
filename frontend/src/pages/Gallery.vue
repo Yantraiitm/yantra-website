@@ -101,19 +101,33 @@
 
         <template v-if="activeFilter === 'all' || activeFilter === 'competitions'">
           <span class="tag">// Competitions</span>
-          <h2 class="section-title reveal" style="margin-bottom:16px;">Robo Dominion</h2>
-          <div class="competition-showcase reveal" style="margin-bottom:48px;">
-            <div class="competition-panel">
-              <div class="competition-text">
-                <span class="competition-eyebrow">Competition Highlights</span>
-                <p>Moments from Robo Dominion, featuring key photos and action-packed videos.</p>
-              </div>
-              <div class="competition-media-grid">
-                <div class="media-card reveal" v-for="image in roboDominionImages" :key="image.name">
-                  <img :src="image.src" :alt="image.alt">
+          <div style="margin-bottom:48px;">
+            <h2 class="section-title reveal" style="margin-bottom:16px;">Robo Dominion</h2>
+            <div class="competition-showcase reveal">
+              <div class="competition-panel">
+                <div class="competition-text">
+                  <span class="competition-eyebrow">Competition Highlights</span>
+                  <p>Moments from Robo Dominion, featuring key photos and action-packed videos.</p>
                 </div>
-                <div class="media-card reveal" v-for="video in roboDominionVideos" :key="video.name">
-                  <video :src="video.src" :poster="roboDominionPoster" controls playsinline preload="metadata"></video>
+                <div class="competition-media-grid">
+                  <div class="media-card reveal" v-for="image in roboDominionImages" :key="image.name">
+                    <img :src="image.src" :alt="image.alt">
+                  </div>
+                  <div class="media-card reveal" v-for="video in roboDominionVideos" :key="video.name">
+                    <video :src="video.src" :poster="roboDominionPoster" controls playsinline preload="metadata"></video>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="section-title reveal" style="margin-bottom:16px;">Other Highlights</h3>
+            <div class="gallery-grid-main reveal">
+              <div class="gallery-item-main reveal" v-for="image in otherCompetitionImages" :key="image.src">
+                <img :src="image.src" :alt="image.alt">
+                <div class="gallery-overlay">
+                  <div class="gallery-overlay-title">{{ image.title }}</div>
                 </div>
               </div>
             </div>
@@ -171,13 +185,18 @@ const activeFilter = ref('all')
 const roboDominionPoster = '/img/gallery/robo-dominion/A.jpeg'
 const roboDominionImages = [
   { name: 'A', src: '/img/gallery/robo-dominion/A.jpeg', alt: 'Robo Dominion photo A' },
-  { name: 'B', label: 'Photo B', src: '/img/gallery/robo-dominion/B.jpeg', alt: 'Robo Dominion photo B' },
+  { name: 'B', src: '/img/gallery/robo-dominion/B.jpeg', alt: 'Robo Dominion photo B' },
 ]
 const roboDominionVideos = Array.from({ length: 7 }, (_, index) => ({
   name: `${index + 1}`,
-  label: `${index + 1}`,
   src: `/img/gallery/robo-dominion/${index + 1}.mp4`,
 }))
+const otherCompetitionImages = [
+  { src: '/img/gallery/Comp_1.jpeg', alt: 'Competition highlight 1', title: 'RRCC' },
+  { src: '/img/gallery/Comp_2.jpeg', alt: 'Competition highlight 2', title: 'RRCC' },
+  { src: '/img/gallery/Comp_3.png', alt: 'Competition highlight 3', title: 'RRCC' },
+  { src: '/img/gallery/Comp_5.jpeg', alt: 'Competition highlight 4', title: 'RRCC' },
+]
 const tabs = [
   { value: 'all', label: 'All' },
   { value: 'workshops', label: 'Workshops' },
