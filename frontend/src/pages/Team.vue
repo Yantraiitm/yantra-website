@@ -24,7 +24,8 @@
             </div>
 
             <div class="team-card-body">
-              <p class="team-role" style="font-size: medium;">{{ member.role }}</p>
+              <p v-if="member.id!=12" class="team-role" style="font-size: medium;">{{ member.role }}</p>
+              <p v-else class="team-role" style="font-size:small;">{{ member.role }}</p>
               <h3 class="team-name">{{ member.name }}</h3>
               <p class="team-desc">{{ member.description }}</p>
 
@@ -84,11 +85,11 @@ const teamMembers = [
   },
   {
     name: 'Finny Varghese',
-    role: 'Mentor',
+    role: 'Founding member of Yantra\'s Administrative Council and Industry Mentor',
     id: 12,
     image: '/img/team/finnymentor.jpeg',
-    description: 'Provides mentorship and guidance to teams during robotics workshops and competitions.',
-    skills: ['Mentoring', 'Robotics Guidance', 'Team Coaching'],
+    description: 'Bringing professional robotics experience from the UK\'s deep-tech sector to guide the society\'s technical programmes, governance, and research initiatives.',
+    skills: ['Mentoring', 'Robotics Guidance', 'Industry Experience'],
   },
   {
     name: 'Melvin Joseph',
