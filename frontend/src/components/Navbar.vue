@@ -20,8 +20,7 @@
         <li><RouterLink to="/blog" @click="closeMobileMenu">Blog</RouterLink></li>
         <li><RouterLink to="/join" class="nav-join" @click="closeMobileMenu">Join</RouterLink></li>
         <li><RouterLink to="/contact" @click="closeMobileMenu">Contact</RouterLink></li>
-        <li v-if="!isAuthenticated"><RouterLink to="/login" class="nav-login" @click="closeMobileMenu">Login</RouterLink></li>
-        <li v-if="isAuthenticated"><RouterLink to="/dashboard" class="nav-login" @click="closeMobileMenu">Dashboard</RouterLink></li>
+        <li><RouterLink :to="isAuthenticated ? '/dashboard' : '/login'" class="nav-login" @click="closeMobileMenu">Admin Zone</RouterLink></li>
         <li v-if="isAuthenticated"><button type="button" class="nav-logout" @click="handleLogout">Logout</button></li>
       </ul>
 
@@ -40,12 +39,13 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import { useUserStore } from '../stores/user'
+import { storeToRefs } from 'pinia'
 
 const isScrolled = ref(false)
 const mobileMenuOpen = ref(false)
 const router = useRouter()
 const userStore = useUserStore()
-const isAuthenticated = userStore.isAuthenticated
+const { isAuthenticated } = storeToRefs(userStore)
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 48
@@ -66,6 +66,9 @@ const handleLogout = async () => {
 
 onMounted(() => {
   window.addEventListener('scroll', handleScroll, { passive: true })
+  if (localStorage.getItem('auth_token') && !isAuthenticated.value) {
+    userStore.fetchCurrentUser()
+  }
 })
 
 onUnmounted(() => {

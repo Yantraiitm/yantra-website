@@ -12,15 +12,35 @@
     <section class="section">
       <div class="container">
 
+        <div class="content-section-head">
+          <span class="tag">// Yantra visual archive</span>
+          <h2 class="section-title">Builds, people, moments</h2>
+          <p class="section-subtitle">A closer look at the workshops, robots, and community behind Yantra.</p>
+        </div>
+
         <div class="filter-tabs">
           <button
-            v-for="tab in tabs"
+            v-for="tab in galleryTabs"
             :key="tab.value"
             class="filter-tab"
             :class="{ active: activeFilter === tab.value }"
             @click="activeFilter = tab.value"
           >{{ tab.label }}</button>
         </div>
+
+        <RoboticsLoader v-if="galleryLoading" compact label="Syncing gallery" />
+        <StatusBadge v-else-if="galleryError" tone="error" :label="galleryError" />
+        <EmptyState v-else-if="activeFilter !== 'all' && !visibleManagedImages.length && galleryTabs.some((tab) => tab.value === activeFilter && !['workshops', 'robots', 'competitions', 'team'].includes(tab.value))" title="No images in this collection" message="Choose another category or check back after the next Yantra event." />
+        <template v-if="visibleManagedImages.length">
+          <span class="tag">// Added by Yantra</span>
+          <h2 class="section-title reveal" style="margin-bottom:24px">{{ activeFilter === 'all' ? 'Latest moments' : activeFilter }}</h2>
+          <div class="gallery-grid-main" style="margin-bottom:48px">
+            <div class="gallery-item-main reveal" v-for="image in visibleManagedImages" :key="image.id">
+              <img :src="image.image_url" :alt="image.caption || 'Yantra gallery image'">
+              <div class="gallery-overlay"><div class="gallery-overlay-title">{{ image.caption }}</div><div class="gallery-overlay-sub">{{ image.category }}</div></div>
+            </div>
+          </div>
+        </template>
 
         <template v-if="activeFilter === 'all' || activeFilter === 'workshops'">
           <span class="tag">// Workshops</span>
@@ -175,13 +195,28 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import apiClient from '../services/api'
 import { useScrollReveal } from '../composables/useScrollReveal'
+import RoboticsLoader from '../components/RoboticsLoader.vue'
+import StatusBadge from '../components/StatusBadge.vue'
+import EmptyState from '../components/EmptyState.vue'
 
 useScrollReveal()
 
 const activeFilter = ref('all')
+const managedImages = ref([])
+const galleryLoading = ref(true)
+const galleryError = ref('')
+const galleryTabs = computed(() => {
+  const categories = [...new Set(managedImages.value.map((image) => image.category).filter(Boolean))]
+  return [...tabs, ...categories.filter((category) => !tabs.some((tab) => tab.value === category)).map((category) => ({ value: category, label: category }))]
+})
+const visibleManagedImages = computed(() => activeFilter.value === 'all' ? managedImages.value : managedImages.value.filter((image) => image.category === activeFilter.value))
+onMounted(async () => {
+  try { const { data } = await apiClient.get('/gallery'); managedImages.value = data } catch (error) { galleryError.value = error.response?.data?.error || 'Managed gallery images could not be loaded.' } finally { galleryLoading.value = false }
+})
 const roboDominionPoster = '/img/gallery/robo-dominion/A.jpeg'
 const roboDominionImages = [
   { name: 'A', src: '/img/gallery/robo-dominion/A.jpeg', alt: 'Robo Dominion photo A' },
@@ -240,6 +275,8 @@ const tabs = [
   grid-column: span 2;
   aspect-ratio: 16/9;
 }
+.gallery-message { margin:12px 0 20px; color:var(--text-dim); }
+.gallery-error { color:#fb7185; }
 .gallery-overlay {
   position: absolute;
   inset: 0;

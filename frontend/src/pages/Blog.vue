@@ -56,11 +56,6 @@
                 {{ tab.emoji }} {{ tab.label }} <span class="cat-count">{{ tab.count }}</span>
               </button>
             </template>
-            <template v-else>
-              <div class="skel-line w60" style="height:34px; border-radius:100px; width:80px;"></div>
-              <div class="skel-line w60" style="height:34px; border-radius:100px; width:110px;"></div>
-              <div class="skel-line w60" style="height:34px; border-radius:100px; width:95px;"></div>
-            </template>
           </div>
           <div class="results-info" v-if="postsLoaded">
             Showing <b>{{ visibleCount }}</b> post{{ visibleCount !== 1 ? 's' : '' }}
@@ -68,16 +63,7 @@
           </div>
         </div>
 
-        <div v-if="!postsLoaded && !fetchFailed" class="skel-grid">
-          <div class="skel-card" v-for="i in 3" :key="i">
-            <div class="skel-thumb"></div>
-            <div class="skel-body">
-              <div class="skel-line w60"></div>
-              <div class="skel-line w90"></div>
-              <div class="skel-line w75"></div>
-            </div>
-          </div>
-        </div>
+        <RoboticsLoader v-if="!postsLoaded && !fetchFailed" label="Connecting to Yantra Blogspot" />
 
         <div v-if="fetchFailed && !postsLoaded" class="fetch-error">
           <div class="err-icon">⚠️</div>
@@ -137,6 +123,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { RouterLink } from 'vue-router'
+import RoboticsLoader from '../components/RoboticsLoader.vue'
 
 const BLOG_URL = 'https://yantra-iitm.blogspot.com'
 const JSONP_CB = 'yantraFeedCB'

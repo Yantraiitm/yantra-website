@@ -11,8 +11,17 @@
 
     <section class="section">
       <div class="container">
+        <div class="content-section-head">
+          <span class="tag">// Crew roster</span>
+          <h2 class="section-title">Builders behind the bots</h2>
+          <p class="section-subtitle">Meet the people designing, building, and running Yantra’s robotics programmes.</p>
+        </div>
         <div class="team-grid team-grid-feature">
+          <RoboticsLoader v-if="teamLoading" label="Loading team roster" />
+          <StatusBadge v-else-if="teamError" tone="error" :label="teamError" />
+          <EmptyState v-else-if="!teamMembers.length" title="No team profiles yet" message="Check back soon to meet the Yantra team." />
           <article
+            v-else
             v-for="member in teamMembers"
             :key="member.id"
             class="team-card team-card-modern reveal"
@@ -24,7 +33,7 @@
             </div>
 
             <div class="team-card-body">
-              <p v-if="member.id!=12" class="team-role" style="font-size: medium;">{{ member.role }}</p>
+              <p v-if="member.name !== 'Finny Varghese'" class="team-role" style="font-size: medium;">{{ member.role }}</p>
               <p v-else class="team-role" style="font-size:small;">{{ member.role }}</p>
               <h3 class="team-name">{{ member.name }}</h3>
               <p class="team-desc">{{ member.description }}</p>
@@ -46,11 +55,16 @@
 
 <script setup>
 import { RouterLink } from 'vue-router'
+import { onMounted, ref } from 'vue'
+import apiClient from '../services/api'
 import { useScrollReveal } from '../composables/useScrollReveal'
+import RoboticsLoader from '../components/RoboticsLoader.vue'
+import StatusBadge from '../components/StatusBadge.vue'
+import EmptyState from '../components/EmptyState.vue'
 
 useScrollReveal()
 
-const teamMembers = [
+const legacyTeamMembers = [
   {
     name: 'Sayed Zainuddin',
     role: 'Session Host',
@@ -172,6 +186,22 @@ const teamMembers = [
     skills: ['Deep Learning', 'Drones', 'AI Systems'],
   },
 ]
+const teamMembers = ref(legacyTeamMembers)
+const teamLoading = ref(true)
+const teamError = ref('')
+onMounted(async () => {
+  try {
+    const { data } = await apiClient.get('/team')
+    teamMembers.value = data.map((member) => ({
+      ...member,
+      image: member.image_url,
+      role: member.role,
+      skills: Array.isArray(member.skills) ? member.skills : (member.skills || '').split(',').filter(Boolean),
+    }))
+  } catch (error) {
+    teamError.value = error.response?.data?.error || 'Team members could not be loaded.'
+  } finally { teamLoading.value = false }
+})
 </script>
 
 <style scoped>
@@ -205,6 +235,7 @@ const teamMembers = [
 .team-grid-feature {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
 }
+.team-state { grid-column:1 / -1; color:var(--text-dim); }
 
 .team-card-modern {
   padding: 0;

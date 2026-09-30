@@ -1,80 +1,54 @@
 from extensions import db
-from flask_security import hash_password
-from models import Role, User
+from models import TeamMember
+from services.upload_service import cleanup_upload_if_unused
 
 class TeamService:
     @staticmethod
     def get_all():
-        return User.query.filter_by(active=True).all()
+        return TeamMember.query.filter_by(active=True).order_by(TeamMember.sort_order, TeamMember.id).all()
 
     @staticmethod
-    def get_by_id(user_id):
-        return User.query.get(user_id)
+    def get_by_id(member_id):
+        return db.session.get(TeamMember, member_id)
 
     @staticmethod
     def create(data):
-        password = data.get('password', 'ChangeMe123!')
-        user = User(
-            name=data.get('name'),
-            email=data.get('email'),
-            password=hash_password(password),
-            skills=data.get('skills'),
-            github_url=data.get('github_url'),
-            linkedin_url=data.get('linkedin_url'),
-            image_url=data.get('image_url'),
-            active=True
-        )
-
-        role_names = data.get('roles', ['member'])
-        if isinstance(role_names, str):
-            role_names = [role_names]
-
-        for role_name in role_names:
-            role = Role.query.filter_by(name=role_name).first()
-            if role:
-                user.roles.append(role)
-
-        db.session.add(user)
+        member = TeamMember()
+        TeamService.apply(member, data)
+        db.session.add(member)
         db.session.commit()
-        return user
+        return member
 
     @staticmethod
-    def update(user_id, data):
-        user = User.query.get(user_id)
-        if user:
-            if 'password' in data and data['password']:
-                user.password = hash_password(data['password'])
-
-            if 'roles' in data:
-                user.roles = []
-                role_names = data['roles']
-                if isinstance(role_names, str):
-                    role_names = [role_names]
-                for role_name in role_names:
-                    role = Role.query.filter_by(name=role_name).first()
-                    if role:
-                        user.roles.append(role)
-
-            for key, value in data.items():
-                if key in {'name', 'email', 'skills', 'github_url', 'linkedin_url', 'image_url', 'active'}:
-                    setattr(user, key, value)
+    def update(member_id, data):
+        member = TeamService.get_by_id(member_id)
+        if member:
+            previous_image = member.image_url
+            TeamService.apply(member, data)
             db.session.commit()
-        return user
+            if previous_image != member.image_url:
+                cleanup_upload_if_unused(previous_image)
+        return member
 
     @staticmethod
-    def delete(user_id):
-        user = User.query.get(user_id)
-        if user:
-            db.session.delete(user)
-            db.session.commit()
-            return True
-        return False
+    def apply(member, data):
+        for key in ('name', 'role', 'description', 'image_url', 'sort_order', 'active'):
+            if key in data:
+                value = data[key]
+                if key in {'name', 'role'} and isinstance(value, str):
+                    value = value.strip()
+                setattr(member, key, value)
+        if 'skills' in data:
+            value = data['skills']
+            member.skills = ','.join(value) if isinstance(value, list) else (value or '')
 
     @staticmethod
-    def deactivate(user_id):
-        user = User.query.get(user_id)
-        if user:
-            user.active = False
-            db.session.commit()
-            return True
-        return False
+    def delete(member_id):
+        member = TeamService.get_by_id(member_id)
+        if not member:
+            return False
+        previous_image = member.image_url
+        db.session.delete(member)
+        db.session.commit()
+        cleanup_upload_if_unused(previous_image)
+        return True

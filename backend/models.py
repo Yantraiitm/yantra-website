@@ -65,6 +65,28 @@ class Event(BaseModel):
     location = db.Column(db.String(200))
     description = db.Column(db.Text)
     category = db.Column(db.String(50)) # Workshop, Competition, Lecture
+    image_url = db.Column(db.String(500))
+    registration_url = db.Column(db.String(500))
+    max_attendees = db.Column(db.Integer)
+
+class EventRegistration(BaseModel):
+    __tablename__ = 'event_registrations'
+    __table_args__ = (db.UniqueConstraint('event_id', 'email', name='uq_event_registration_email'),)
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id', ondelete='CASCADE'), nullable=False, index=True)
+    name = db.Column(db.String(150), nullable=False)
+    email = db.Column(db.String(254), nullable=False)
+    phone = db.Column(db.String(32))
+    event = db.relationship('Event', backref=db.backref('registrations', cascade='all, delete-orphan'))
+
+class TeamMember(BaseModel):
+    __tablename__ = 'team_members'
+    name = db.Column(db.String(150), nullable=False)
+    role = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.Text)
+    skills = db.Column(db.Text, default='')
+    image_url = db.Column(db.String(500))
+    sort_order = db.Column(db.Integer, default=0)
+    active = db.Column(db.Boolean, default=True)
 
 class Course(BaseModel):
     __tablename__ = 'courses'
@@ -77,6 +99,8 @@ class GalleryImage(BaseModel):
     __tablename__ = 'gallery'
     image_url = db.Column(db.String(500), nullable=False)
     caption = db.Column(db.String(200))
+    category = db.Column(db.String(50), default='general')
+    sort_order = db.Column(db.Integer, default=0)
 
 class ContactMessage(BaseModel):
     __tablename__ = 'contact_messages'

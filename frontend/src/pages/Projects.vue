@@ -22,10 +22,7 @@
           >{{ tab.label }}</button>
         </div>
 
-        <div v-if="loading" class="loading-state">
-          <div class="spinner"></div>
-          <p>Fetching projects from GitHub...</p>
-        </div>
+        <RoboticsLoader v-if="loading" label="Scanning project repositories" />
 
         <div v-if="error && !loading" class="error-state">
           <p v-if="rateLimited">GitHub API rate limit reached. Wait a few minutes and refresh.</p>
@@ -67,9 +64,7 @@
             </div>
           </div>
 
-          <p v-if="!loading && !error && filteredRepos.length === 0 && repos.length > 0" style="text-align:center;color:var(--text-dim);padding:40px;">
-            No projects found in this category.
-          </p>
+          <EmptyState v-if="!loading && !error && filteredRepos.length === 0" title="No projects in this sector" message="Try another category or check back as new builds are published." />
         </div>
 
         <div class="glow-line"></div>
@@ -90,6 +85,8 @@
 import { ref, computed, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useScrollReveal } from '../composables/useScrollReveal'
+import RoboticsLoader from '../components/RoboticsLoader.vue'
+import EmptyState from '../components/EmptyState.vue'
 
 useScrollReveal()
 

@@ -113,8 +113,7 @@
 
             <div class="form-iframe-wrap">
               <div class="form-loading" :class="{ hidden: formLoaded }" id="formLoader">
-                <div class="form-loading-ring"></div>
-                <div class="form-loading-text">Loading application form...</div>
+                <RoboticsLoader label="Connecting application form" />
               </div>
               <iframe
                 class="google-form-iframe"
@@ -137,6 +136,7 @@
 import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useScrollReveal } from '../composables/useScrollReveal'
+import RoboticsLoader from '../components/RoboticsLoader.vue'
 
 useScrollReveal()
 

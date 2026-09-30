@@ -21,6 +21,7 @@
           <button type="submit" class="btn btn-primary" :disabled="loading">
             {{ loading ? 'Signing in…' : 'Login' }}
           </button>
+          <RoboticsLoader v-if="loading" compact label="Authenticating" />
 
           <p v-if="errorMessage" class="auth-error">{{ errorMessage }}</p>
         </form>
@@ -33,6 +34,7 @@
 import { ref, watchEffect, onMounted } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import { useUserStore } from '../stores/user'
+import RoboticsLoader from '../components/RoboticsLoader.vue'
 
 const userStore = useUserStore()
 const router = useRouter()

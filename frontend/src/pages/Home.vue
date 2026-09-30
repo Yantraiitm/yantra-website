@@ -318,34 +318,17 @@
         </div>
         <RouterLink to="/events" class="btn btn-ghost reveal" style="align-self:flex-end;">All events</RouterLink>
       </div>
-      <div class="events-stack">
-        <div class="ev reveal">
-          <div class="ev-cal"><div class="ev-day">18</div><div class="ev-mo">Mar</div></div>
-          <div>
-            <div class="ev-type">Workshop</div>
-            <div class="ev-name">Embedded Systems Workshop</div>
-            <div class="ev-info">GPIO, UART &amp; FreeRTOS hands-on | <b>Prof. Viveka K R</b></div>
-          </div>
-          <RouterLink to="/events" class="btn btn-ghost" style="font-size:0.62rem;padding:9px 16px;white-space:nowrap;">Register</RouterLink>
+      <RoboticsLoader v-if="upcomingLoading" compact label="Loading upcoming events" />
+      <StatusBadge v-else-if="upcomingError" tone="error" :label="upcomingError" />
+      <EmptyState v-else-if="!upcomingEvents.length" title="No events on the radar" message="Check back soon for upcoming Yantra sessions." />
+      <div v-else class="events-stack">
+        <div v-for="event in upcomingEvents" :key="event.id" class="ev reveal">
+          <div class="ev-cal"><div class="ev-day">{{ new Date(event.date).getDate() }}</div><div class="ev-mo">{{ new Date(event.date).toLocaleString(undefined, { month: 'short' }) }}</div></div>
+          <div><div class="ev-type">{{ event.category || 'Event' }}</div><div class="ev-name">{{ event.title }}</div><div class="ev-info">{{ event.location }} <span v-if="event.description">| {{ event.description }}</span></div></div>
+          <a v-if="event.registration_url" :href="event.registration_url" target="_blank" rel="noopener" class="btn btn-amber" style="font-size:0.62rem;padding:9px 16px;white-space:nowrap;">Register</a>
+          <RouterLink v-else to="/events" class="btn btn-ghost" style="font-size:0.62rem;padding:9px 16px;white-space:nowrap;">Details</RouterLink>
         </div>
-        <div class="ev reveal">
-          <div class="ev-cal"><div class="ev-day">05</div><div class="ev-mo">Apr</div></div>
-          <div>
-            <div class="ev-type">Hackathon</div>
-            <div class="ev-name">Robotics Hackathon 2026</div>
-            <div class="ev-info">24-hour build | <b>Rs 10k prize | Teams of 2-4</b></div>
-          </div>
-          <RouterLink to="/events" class="btn btn-amber" style="font-size:0.62rem;padding:9px 16px;white-space:nowrap;">Register</RouterLink>
-        </div>
-        <div class="ev reveal">
-          <div class="ev-cal"><div class="ev-day">22</div><div class="ev-mo">Apr</div></div>
-          <div>
-            <div class="ev-type">Guest Lecture</div>
-            <div class="ev-name">AI in Modern Robotics</div>
-            <div class="ev-info">Foundation models meet real robots | <b>Free entry</b></div>
-          </div>
-          <RouterLink to="/events" class="btn btn-ghost" style="font-size:0.62rem;padding:9px 16px;white-space:nowrap;">Notify me</RouterLink>
-        </div>
+        <p v-if="!upcomingEvents.length" class="ev-info">No upcoming events announced. Check back soon.</p>
       </div>
     </div>
   </section>
@@ -369,5 +352,20 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { useScrollReveal } from '../composables/useScrollReveal.js'
+import { onMounted, ref } from 'vue'
+import apiClient from '../services/api'
+import RoboticsLoader from '../components/RoboticsLoader.vue'
+import StatusBadge from '../components/StatusBadge.vue'
+import EmptyState from '../components/EmptyState.vue'
 useScrollReveal()
+const upcomingEvents = ref([])
+const upcomingLoading = ref(true)
+const upcomingError = ref('')
+onMounted(async () => {
+  try {
+    const { data } = await apiClient.get('/events')
+    upcomingEvents.value = data.filter((event) => new Date(event.date) >= new Date()).slice(0, 3)
+  } catch (error) { upcomingError.value = error.response?.data?.error || 'Upcoming events could not be loaded.' }
+  finally { upcomingLoading.value = false }
+})
 </script>

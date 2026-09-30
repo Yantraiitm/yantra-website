@@ -134,6 +134,13 @@ h1, h2, h3, h4, h5 { font-family: 'Bebas Neue', sans-serif; font-weight: 400; li
   font-size: clamp(2.35rem, 7vw, 4.65rem);
 }
 
+.content-section-head {
+  margin: 0 0 30px;
+}
+.content-section-head .tag { margin-bottom: 10px; }
+.content-section-head .section-title { margin-bottom: 10px; }
+.content-section-head .section-subtitle { margin-top: 0; }
+
 .sec-title em,
 .gradient-text {
   color: var(--amber);
